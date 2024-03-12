@@ -35,3 +35,31 @@ for i, index in enumerate(example_indices):
     print(f'BASELINE HUMAN SUMMARY:\n{summary}')
     print(f'MODEL GENERATION - WITHOUT PROMPT ENGINEERING:\n{output}')
     print(dash_line)
+
+# Zero Shot Inference with the Prompt Template from FLAN-T5
+for i, index in enumerate(example_indices):
+    dialogue = dataset['test'][index]['dialogue']
+    summary = dataset['test'][index]['summary']
+        
+    prompt = f"""
+Dialogue:
+
+{dialogue}
+
+What was going on?
+"""
+    inputs = tokenizer(prompt, return_tensors='pt')
+    output = tokenizer.decode(
+        model.generate(
+            inputs["input_ids"], 
+            max_new_tokens=50,
+        )[0], 
+        skip_special_tokens=True
+    )
+
+    print('Example ', i + 1)
+    print(f'INPUT PROMPT:\n{prompt}')
+    print(f'BASELINE HUMAN SUMMARY:\n{summary}\n')
+    print(f'MODEL GENERATION - ZERO SHOT:\n{output}\n')
+    print(dash_line)
+    
