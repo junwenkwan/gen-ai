@@ -24,6 +24,18 @@ from langchain.agents import AgentExecutor
 
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
-text = "What is the relationship between Applied EV and Suzuki?"
+# text = "What is the relationship between Applied EV and Suzuki?"
 
-agent_executor.invoke({"input": text})
+# agent_executor.invoke({"input": text})
+
+from langchain_core.messages import AIMessage, HumanMessage
+
+agent_executor.invoke(
+    {
+        "input": "what's my name? Don't use tools to look this up unless you NEED to",
+        "chat_history": [
+            HumanMessage(content="hi! my name is bob"),
+            AIMessage(content="Hello Bob! How can I assist you today?"),
+        ],
+    }
+)
