@@ -1,12 +1,12 @@
-import os
-os.environ["OPENAI_API_KEY"] = "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"
-
+from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain import hub
 from langchain.agents import create_openai_tools_agent
 from langchain_community.tools import DuckDuckGoSearchResults
 from langchain.agents import AgentExecutor
 from langchain_core.messages import AIMessage, HumanMessage
+
+load_dotenv()
 
 llm = ChatOpenAI(model="gpt-3.5-turbo-1106", temperature=0)
 
