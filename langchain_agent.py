@@ -5,6 +5,8 @@ from langchain.agents import create_openai_tools_agent
 from langchain_community.tools import DuckDuckGoSearchResults
 from langchain.agents import AgentExecutor
 from langchain_core.messages import AIMessage, HumanMessage
+from langchain_community.tools import WikipediaQueryRun
+from langchain_community.utilities import WikipediaAPIWrapper
 
 load_dotenv()
 
@@ -14,7 +16,9 @@ prompt = hub.pull("hwchase17/openai-tools-agent")
 
 search = DuckDuckGoSearchResults()
 
-tools = [search]
+wikipedia = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
+
+tools = [search, wikipedia]
 
 agent = create_openai_tools_agent(llm, tools, prompt)
 
