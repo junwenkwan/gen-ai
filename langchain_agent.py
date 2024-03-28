@@ -27,9 +27,5 @@ agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 agent_executor.invoke(
     {
         "input": "What is the relationship between Applied EV and Suzuki?",
-        "chat_history": [
-            HumanMessage(content="hi! my name is bob"),
-            AIMessage(content="Hello Bob! How can I assist you today?"),
-        ],
     }
 )
