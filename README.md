@@ -1,1 +1,1 @@
-# gen-ai
+# Gen AI Discovery
