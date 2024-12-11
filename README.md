@@ -1,1 +1,1 @@
-# Gen AI Discovery
+# LLMs Discovery
